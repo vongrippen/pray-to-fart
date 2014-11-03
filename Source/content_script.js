@@ -32,6 +32,14 @@ function walk(node)
 function handleText(textNode) {
 	var v = textNode.nodeValue;
 
+  if(v.match(/prayers/i)) {
+    // If we're not talking about weather
+    v = v.replace(/(P|p)rayers/gi, function(match, p1, offset, string) {
+      // c - 1 = b
+      f = String.fromCharCode(p1.charCodeAt(0) - 10);
+      return f + "arts";
+    });
+  }
   // Get the corner cases
   if(v.match(/pray/i)) {
     // If we're not talking about weather
